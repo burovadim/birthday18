@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>С Днём Рождения, любимая ❤️</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ffd1dc, #fbe7c6);
+            min-height: 100vh;
+            color: #4a2c2a;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-weight: normal;
+            margin-bottom: 40px;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .photo-frame {
+            background: #fff;
+            padding: 12px;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            transform: rotate(-2deg);
+            transition: transform 0.3s;
+        }
+
+        .photo-frame:nth-child(2) { transform: rotate(2deg); }
+        .photo-frame:nth-child(3) { transform: rotate(-1deg); }
+
+        .photo-frame:hover {
+            transform: scale(1.05);
+        }
+
+        .photo-frame img {
+            width: 280px;
+            border-radius: 15px;
+        }
+
+        .text-box {
+            background: rgba(255,255,255,0.85);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            font-size: 1.2em;
+            line-height: 1.7;
+        }
+
+        .heart {
+            color: #e25555;
+            font-size: 1.5em;
+        }
+
+        footer {
+            margin-top: 40px;
+            opacity: 0.8;
+        }
+
+        .hearts {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart-float {
+            position: absolute;
+            animation: floatDown linear forwards;
+        }
+
+        @keyframes floatDown {
+            0% { transform: translateY(-10vh) scale(0.8); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(110vh) scale(1.3); opacity: 0; }
+        }
+
+        .music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #fff;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 18px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            font-size: 14px;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+
+<div class="hearts"></div>
+
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-btn" onclick="toggleMusic()">🎵 Музыка</button>
+
+<div class="container">
+    <h1>С Днём Рождения, моя любимая ❤️</h1>
+    <h2>Самой прекрасной девушке в моей жизни</h2>
+
+    <div class="gallery">
+        <div class="photo-frame"><img src="photo1.jpg"></div>
+        <div class="photo-frame"><img src="photo2.jpg"></div>
+        <div class="photo-frame"><img src="photo3.jpg"></div>
+    </div>
+
+    <div class="text-box">
+        <p>Сегодня особенный день — день, когда на свет появилась ты.</p>
+        <p>Уже <strong>4 года</strong> ты рядом со мной — в каждом дне моей жизни.</p>
+        <p>Я люблю тебя и буду любить — <strong>сколько бы времени ни прошло</strong>.</p>
+        <p class="heart">❤️ Я всегда буду рядом. С днём рождения, родная ❤️</p>
+    </div>
+
+    <footer>Навсегда твой 💕</footer>
+</div>
+
+<script>
+    const hearts = document.querySelector('.hearts');
+    function createHeart() {
+        const h = document.createElement('div');
+        h.className = 'heart-float';
+        h.innerHTML = '❤️';
+        h.style.left = Math.random() * 100 + 'vw';
+        h.style.fontSize = (16 + Math.random() * 24) + 'px';
+        h.style.animationDuration = (6 + Math.random() * 6) + 's';
+        hearts.appendChild(h);
+        setTimeout(() => h.remove(), 12000);
+    }
+    setInterval(createHeart, 400);
+
+    const music = document.getElementById('bgMusic');
+    let playing = false;
+    function toggleMusic() {
+        playing ? music.pause() : music.play();
+        playing = !playing;
+    }
+</script>
+
+</body>
+</html>
